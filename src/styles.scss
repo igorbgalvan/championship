@@ -1,0 +1,180 @@
+/* NG Zorro Styles */
+@import 'ng-zorro-antd/ng-zorro-antd.css';
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Dark Theme Variables */
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --accent-blue: #4a90e2;
+  --accent-purple: #9b59b6;
+  --accent-cyan: #00d4ff;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --border-color: #2a2a3e;
+  --winner-glow: #00ff88;
+  --champion-glow: #ffd700;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-purple);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+/* NG Zorro Dark Theme Overrides */
+.ant-btn-primary {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  
+  &:hover {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+  }
+}
+
+.ant-input {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  
+  &:focus {
+    border-color: var(--accent-blue);
+  }
+}
+
+.ant-card {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+.ant-typography {
+  color: var(--text-primary);
+}
+
+/* Champion Modal Styles */
+.champion-modal-content {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Hide modal title when empty */
+.ant-modal-header:has(.ant-modal-title:empty) {
+  display: none;
+}
+
+.champion-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: championPulse 2s ease-in-out infinite;
+}
+
+.champion-title {
+  color: var(--champion-glow);
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 20px var(--champion-glow);
+  letter-spacing: 0.2em;
+}
+
+.champion-name {
+  color: var(--accent-cyan);
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px var(--accent-cyan);
+  margin-bottom: 1rem;
+}
+
+@keyframes championPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+  }
+}
+
+/* Modal Dark Theme Overrides */
+.ant-modal {
+  .ant-modal-content {
+    background: var(--bg-secondary);
+    border: 2px solid var(--champion-glow);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  }
+
+  .ant-modal-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    
+    &:has(.ant-modal-title:empty) {
+      display: none;
+    }
+  }
+
+  .ant-modal-title {
+    color: var(--text-primary);
+  }
+
+  .ant-modal-body {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+
+  .ant-modal-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .ant-btn {
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .ant-btn-primary {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+    min-width: 200px;
+    height: 45px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .ant-btn-primary:hover {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+  }
+}
