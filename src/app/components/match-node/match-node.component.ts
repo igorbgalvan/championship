@@ -4,6 +4,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Match } from '../../models/match.model';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-match-node',
@@ -28,10 +29,10 @@ import { Match } from '../../models/match.model';
               [disabled]="!match.player1 || (match.isComplete && match.winner !== match.player1)"
               (click)="selectWinner(match.player1!)"
             >
-              <span class="player-name">{{ match.player1 || 'TBD' }}</span>
+              <span class="player-name">{{ match.player1 || t.get('bracket.tbd') }}</span>
             </button>
             
-            <div class="vs-divider">VS</div>
+            <div class="vs-divider">{{ t.get('bracket.vs') }}</div>
             
             <button 
               class="player-button"
@@ -40,7 +41,7 @@ import { Match } from '../../models/match.model';
               [disabled]="!match.player2 || (match.isComplete && match.winner !== match.player2)"
               (click)="selectWinner(match.player2!)"
             >
-              <span class="player-name">{{ match.player2 || 'TBD' }}</span>
+              <span class="player-name">{{ match.player2 || t.get('bracket.tbd') }}</span>
             </button>
           </div>
 
@@ -54,7 +55,7 @@ import { Match } from '../../models/match.model';
                 class="edit-button"
               >
                 <span nz-icon nzType="edit" nzTheme="outline"></span>
-                Edit
+                {{ t.get('bracket.edit') }}
               </button>
             </div>
           }
@@ -203,6 +204,8 @@ export class MatchNodeComponent {
   @Input() isFinal: boolean = false;
   @Output() winnerSelected = new EventEmitter<{ matchId: string; winner: string }>();
   @Output() matchEdited = new EventEmitter<string>();
+
+  constructor(public t: TranslationService) {}
 
   selectWinner(player: string): void {
     if (!this.match.isComplete && (player === this.match.player1 || player === this.match.player2)) {

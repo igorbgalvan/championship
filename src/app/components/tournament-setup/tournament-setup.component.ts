@@ -6,6 +6,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { TournamentService } from '../../services/tournament.service';
+import { TranslationService } from '../../services/translation.service';
 import { PlayerInputComponent } from '../player-input/player-input.component';
 
 @Component({
@@ -23,14 +24,14 @@ import { PlayerInputComponent } from '../player-input/player-input.component';
   template: `
     <div class="setup-container">
       <nz-card class="setup-card">
-        <h2>Create New Tournament</h2>
+        <h2>{{ t.get('setup.title') }}</h2>
         
         <div class="form-group">
-          <label>Tournament Name (Optional)</label>
+          <label>{{ t.get('setup.name.label') }}</label>
           <input 
             nz-input 
             [(ngModel)]="tournamentName" 
-            placeholder="Enter tournament name"
+            [placeholder]="t.get('setup.name.placeholder')"
             class="input-field"
           />
         </div>
@@ -41,7 +42,7 @@ import { PlayerInputComponent } from '../player-input/player-input.component';
           (click)="proceedToPlayerInput()"
           class="action-button"
         >
-          Continue
+          {{ t.get('setup.continue') }}
         </button>
       </nz-card>
 
@@ -105,7 +106,10 @@ export class TournamentSetupComponent {
   tournamentName: string = '';
   showPlayerInput: boolean = false;
 
-  constructor(private tournamentService: TournamentService) {}
+  constructor(
+    private tournamentService: TournamentService,
+    public t: TranslationService
+  ) {}
 
   proceedToPlayerInput(): void {
     this.showPlayerInput = true;

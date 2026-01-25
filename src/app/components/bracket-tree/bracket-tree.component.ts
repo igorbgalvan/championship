@@ -8,6 +8,7 @@ import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 import { Tournament } from '../../models/tournament.model';
 import { Match } from '../../models/match.model';
 import { TournamentService } from '../../services/tournament.service';
+import { TranslationService } from '../../services/translation.service';
 import { MatchNodeComponent } from '../match-node/match-node.component';
 import { Subscription } from 'rxjs';
 
@@ -35,7 +36,7 @@ import { Subscription } from 'rxjs';
             class="action-btn"
           >
             <span nz-icon nzType="download" nzTheme="outline"></span>
-            Export
+            {{ t.get('bracket.export') }}
           </button>
           <button 
             nz-button 
@@ -44,7 +45,7 @@ import { Subscription } from 'rxjs';
             class="action-btn"
           >
             <span nz-icon nzType="upload" nzTheme="outline"></span>
-            Import
+            {{ t.get('bracket.import') }}
           </button>
           <button 
             nz-button 
@@ -54,7 +55,7 @@ import { Subscription } from 'rxjs';
             class="action-btn"
           >
             <span nz-icon nzType="delete" nzTheme="outline"></span>
-            New Tournament
+            {{ t.get('bracket.new') }}
           </button>
         </div>
       </div>
@@ -63,7 +64,7 @@ import { Subscription } from 'rxjs';
       <div class="bracket-tree-desktop">
         @for (round of rounds; track round) {
           <div class="round-column" [class.current-round]="isCurrentRound(round)">
-            <h3 class="round-title" [class.current-round-title]="isCurrentRound(round)">Round {{ round }}</h3>
+            <h3 class="round-title" [class.current-round-title]="isCurrentRound(round)">{{ t.get('bracket.round', { number: round.toString() }) }}</h3>
             <div class="matches-container">
               @for (match of getMatchesByRound(round); track match.id) {
                 <app-match-node 
@@ -82,7 +83,7 @@ import { Subscription } from 'rxjs';
       <div class="bracket-tree-mobile" #mobileContainer>
         @for (round of rounds; track round) {
           <div class="round-column-mobile" [class.current-round]="isCurrentRound(round)" #roundColumn>
-            <h3 class="round-title" [class.current-round-title]="isCurrentRound(round)">Round {{ round }}</h3>
+            <h3 class="round-title" [class.current-round-title]="isCurrentRound(round)">{{ t.get('bracket.round', { number: round.toString() }) }}</h3>
             <div class="matches-container-mobile">
               @for (match of getMatchesByRound(round); track match.id) {
                 <app-match-node 
@@ -338,7 +339,8 @@ export class BracketTreeComponent implements AfterViewInit, OnChanges, OnInit, O
 
   constructor(
     private tournamentService: TournamentService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    public t: TranslationService
   ) {}
 
   ngOnInit(): void {
@@ -504,7 +506,7 @@ export class BracketTreeComponent implements AfterViewInit, OnChanges, OnInit, O
           try {
             this.tournamentService.importTournament(e.target.result);
           } catch (error) {
-            alert('Failed to import tournament. Invalid file format.');
+            alert(this.t.get('action.import.error'));
           }
         };
         reader.readAsText(file);
@@ -514,7 +516,7 @@ export class BracketTreeComponent implements AfterViewInit, OnChanges, OnInit, O
   }
 
   clearTournament(): void {
-    if (confirm('Are you sure you want to start a new tournament? This will clear the current tournament.')) {
+    if (confirm(this.t.get('action.confirm.clear'))) {
       this.tournamentService.clearTournament();
       window.location.reload();
     }
@@ -537,13 +539,13 @@ export class BracketTreeComponent implements AfterViewInit, OnChanges, OnInit, O
       nzContent: `
         <div class="champion-modal-content">
           <div class="champion-icon">🏆</div>
-          <h1 class="champion-title">CHAMPION</h1>
+          <h1 class="champion-title">${this.t.get('modal.champion.title')}</h1>
           <p class="champion-name">${champion}</p>
         </div>
       `,
       nzFooter: [
         {
-          label: 'New Tournament',
+          label: this.t.get('modal.champion.new'),
           type: 'primary',
           onClick: () => {
             this.tournamentService.clearTournament();

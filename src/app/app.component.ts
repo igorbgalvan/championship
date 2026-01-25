@@ -1,20 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TournamentSetupComponent } from './components/tournament-setup/tournament-setup.component';
 import { BracketTreeComponent } from './components/bracket-tree/bracket-tree.component';
+import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { TournamentService } from './services/tournament.service';
+import { TranslationService } from './services/translation.service';
 import { Observable } from 'rxjs';
 import { Tournament } from './models/tournament.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, TournamentSetupComponent, BracketTreeComponent],
+  imports: [CommonModule, TournamentSetupComponent, BracketTreeComponent, LanguageSelectorComponent],
   template: `
     <div class="app-container">
       <header class="app-header">
-        <h1 class="app-title">🏆 CHAMPIONSHIP</h1>
-        <p class="app-subtitle">Single-Elimination Tournament Bracket</p>
+        <div class="header-content">
+          <div class="header-text">
+            <h1 class="app-title">{{ t.get('app.title') }}</h1>
+            <p class="app-subtitle">{{ t.get('app.subtitle') }}</p>
+          </div>
+          <app-language-selector></app-language-selector>
+        </div>
       </header>
       
       <main class="app-main">
@@ -34,10 +42,22 @@ import { Tournament } from './models/tournament.model';
     }
 
     .app-header {
-      text-align: center;
       padding: 2rem 1rem;
       border-bottom: 2px solid var(--border-color);
       background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-text {
+      text-align: center;
+      flex: 1;
     }
 
     .app-title {
@@ -76,10 +96,34 @@ import { Tournament } from './models/tournament.model';
     }
   `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   tournament$: Observable<Tournament | null>;
 
-  constructor(private tournamentService: TournamentService) {
+  constructor(
+    private tournamentService: TournamentService,
+    public t: TranslationService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.tournament$ = this.tournamentService.tournament$;
+  }
+
+  ngOnInit(): void {
+    // Initialize language from route - only once
+    const lang = this.route.snapshot.params['lang'] as string;
+    if (lang && ['pt', 'en', 'es'].includes(lang)) {
+      const currentLang = this.t.getCurrentLanguage();
+      if (currentLang !== lang) {
+        // Only update if different to avoid reload loop - use skipReload flag
+        this.t.setLanguage(lang as any, true);
+      }
+    } else if (!lang || !['pt', 'en', 'es'].includes(lang)) {
+      // Redirect to default language if invalid - only if not already on a valid route
+      const currentPath = window.location.pathname;
+      if (!currentPath.match(/^\/(pt|en|es)/)) {
+        const defaultLang = this.t.getCurrentLanguage();
+        this.router.navigate([`/${defaultLang}`], { replaceUrl: true });
+      }
+    }
   }
 }

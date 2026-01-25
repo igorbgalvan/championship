@@ -6,6 +6,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-player-input',
@@ -21,7 +22,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
   ],
   template: `
     <nz-card class="player-input-card">
-      <h3>Add Players</h3>
+      <h3>{{ t.get('players.title') }}</h3>
       
       <div class="players-list">
         @for (player of players; track $index) {
@@ -30,7 +31,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
             <input 
               nz-input 
               [(ngModel)]="players[$index]"
-              [placeholder]="'Player ' + ($index + 1)"
+              [placeholder]="t.get('players.placeholder', { number: ($index + 1).toString() })"
               class="player-input"
               (keyup.enter)="onPlayerInputEnter($index)"
             />
@@ -58,9 +59,11 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
           class="add-button"
         >
           <span nz-icon nzType="plus" nzTheme="outline"></span>
-          Add Player
+          {{ t.get('players.add') }}
         </button>
-        <span class="player-count">{{ players.length }} player{{ players.length !== 1 ? 's' : '' }}</span>
+        <span class="player-count">
+          {{ t.get(players.length === 1 ? 'players.count' : 'players.count.plural', { count: players.length.toString() }) }}
+        </span>
       </div>
 
       <div class="actions">
@@ -184,11 +187,15 @@ export class PlayerInputComponent implements OnInit {
   @Input() tournamentName: string = '';
   @Output() playersSubmitted = new EventEmitter<string[]>();
 
-  players: string[] = [''];
+  players: string[] = [];
+
+  constructor(public t: TranslationService) {}
 
   ngOnInit(): void {
     // Start with one empty player field
-    this.players = [''];
+    if (this.players.length === 0) {
+      this.players = [''];
+    }
   }
 
   addPlayer(): void {
