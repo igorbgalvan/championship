@@ -1,6 +1,6 @@
-# Championship - Tournament Bracket System
+# 🏆 Championship - Tournament Bracket System
 
-A single-page Angular application for managing single-elimination (knockout) tournaments with a beautiful bracket visualization.
+A single-page Angular application for managing single-elimination (knockout) tournaments with a beautiful bracket visualization. Create and manage tournaments with any number of players, automatic bye handling, and local persistence.
 
 ## Features
 

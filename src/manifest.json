@@ -1,0 +1,18 @@
+{
+  "name": "Championship - Tournament Bracket System",
+  "short_name": "Championship",
+  "description": "Sistema de Torneio Eliminação Simples com bracket visual interativo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/logo-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

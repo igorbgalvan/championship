@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Renderer2, OnDestroy } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TournamentSetupComponent } from './components/tournament-setup/tournament-setup.component';
@@ -6,7 +7,7 @@ import { BracketTreeComponent } from './components/bracket-tree/bracket-tree.com
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { TournamentService } from './services/tournament.service';
 import { TranslationService } from './services/translation.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Tournament } from './models/tournament.model';
 
 @Component({
@@ -96,14 +97,22 @@ import { Tournament } from './models/tournament.model';
     }
   `]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   tournament$: Observable<Tournament | null>;
+  private langSubscription?: Subscription;
+  private langMap: Record<string, string> = {
+    'pt': 'pt-BR',
+    'en': 'en-US',
+    'es': 'es-ES'
+  };
 
   constructor(
     private tournamentService: TournamentService,
     public t: TranslationService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2
   ) {
     this.tournament$ = this.tournamentService.tournament$;
   }
@@ -117,6 +126,7 @@ export class AppComponent implements OnInit {
         // Only update if different to avoid reload loop - use skipReload flag
         this.t.setLanguage(lang as any, true);
       }
+      this.updateHtmlLang(lang);
     } else if (!lang || !['pt', 'en', 'es'].includes(lang)) {
       // Redirect to default language if invalid - only if not already on a valid route
       const currentPath = window.location.pathname;
@@ -125,5 +135,21 @@ export class AppComponent implements OnInit {
         this.router.navigate([`/${defaultLang}`], { replaceUrl: true });
       }
     }
+
+    // Subscribe to language changes to update HTML lang attribute
+    this.langSubscription = this.t.currentLanguage$.subscribe(lang => {
+      this.updateHtmlLang(lang);
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
+  }
+
+  private updateHtmlLang(lang: string): void {
+    const htmlLang = this.langMap[lang] || 'pt-BR';
+    this.renderer.setAttribute(this.document.documentElement, 'lang', htmlLang);
   }
 }

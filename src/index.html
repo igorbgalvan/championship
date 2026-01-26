@@ -1,11 +1,103 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>Championship - Tournament Bracket</title>
+  <title>Championship - Sistema de Torneio Eliminação Simples | Tournament Bracket</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Championship - Sistema de Torneio Eliminação Simples">
+  <meta name="description" content="Crie e gerencie torneios de eliminação simples com bracket visual interativo. Suporte para qualquer número de jogadores, gerenciamento de byes automático, e persistência local. Gratuito e 100% frontend.">
+  <meta name="keywords" content="torneio, bracket, eliminação simples, knockout, campeonato, tournament, single elimination, bracket generator">
+  <meta name="author" content="Championship">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Portuguese, English, Spanish">
+  <meta name="revisit-after" content="7 days">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://campeonatoonline.com.br/">
+  <meta property="og:title" content="Championship - Sistema de Torneio Eliminação Simples">
+  <meta property="og:description" content="Crie e gerencie torneios de eliminação simples com bracket visual interativo. Suporte para qualquer número de jogadores, gerenciamento de byes automático, e persistência local.">
+  <meta property="og:image" content="https://campeonatoonline.com.br/assets/logo.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:site_name" content="Championship">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://campeonatoonline.com.br/">
+  <meta name="twitter:title" content="Championship - Sistema de Torneio Eliminação Simples">
+  <meta name="twitter:description" content="Crie e gerencie torneios de eliminação simples com bracket visual interativo. Suporte para qualquer número de jogadores, gerenciamento de byes automático, e persistência local.">
+  <meta name="twitter:image" content="https://campeonatoonline.com.br/assets/logo.svg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo-icon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo-icon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo-icon.svg">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="msapplication-TileColor" content="#0a0a0f">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://campeonatoonline.com.br/">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Championship",
+    "alternateName": "Tournament Bracket System",
+    "description": "Sistema de Torneio Eliminação Simples com bracket visual interativo. Crie e gerencie torneios de eliminação simples com suporte para qualquer número de jogadores, gerenciamento automático de byes, e persistência local.",
+    "url": "https://campeonatoonline.com.br",
+    "applicationCategory": "SportsApplication",
+    "operatingSystem": "Web Browser",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "softwareVersion": "1.0.0",
+    "releaseNotes": "Sistema completo de torneios de eliminação simples",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "featureList": [
+      "Bracket visual interativo",
+      "Suporte para qualquer número de jogadores",
+      "Gerenciamento automático de byes",
+      "Persistência local (LocalStorage)",
+      "Import/Export de torneios",
+      "Interface responsiva",
+      "Suporte multi-idioma (PT, EN, ES)",
+      "Tema dark com design retro"
+    ],
+    "screenshot": "https://campeonatoonline.com.br/assets/logo.svg",
+    "softwareHelp": {
+      "@type": "CreativeWork",
+      "text": "Crie torneios de eliminação simples facilmente. Adicione jogadores, selecione vencedores clicando nos nomes, e veja o bracket atualizar automaticamente."
+    },
+    "inLanguage": ["pt-BR", "en-US", "es-ES"]
+  }
+  </script>
+  
+  <!-- Additional SEO -->
+  <meta name="application-name" content="Championship">
+  <meta name="apple-mobile-web-app-title" content="Championship">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 </head>
 <body>
   <app-root></app-root>

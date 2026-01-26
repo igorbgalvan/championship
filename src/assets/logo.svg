@@ -1,0 +1,35 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="trophyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#bgGradient)" stroke="#00d4ff" stroke-width="3"/>
+  
+  <!-- Trophy base -->
+  <rect x="70" y="140" width="60" height="20" rx="5" fill="#4a90e2"/>
+  <rect x="75" y="135" width="50" height="10" rx="3" fill="#9b59b6"/>
+  
+  <!-- Trophy cup -->
+  <path d="M 60 135 L 60 80 Q 60 60 80 60 L 120 60 Q 140 60 140 80 L 140 135 Z" fill="url(#trophyGradient)" stroke="#ffd700" stroke-width="2"/>
+  
+  <!-- Trophy handles -->
+  <path d="M 60 100 Q 40 100 40 120 Q 40 140 60 140" fill="none" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
+  <path d="M 140 100 Q 160 100 160 120 Q 160 140 140 140" fill="none" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Trophy top decoration -->
+  <circle cx="100" cy="60" r="8" fill="#00d4ff"/>
+  <circle cx="85" cy="70" r="5" fill="#00d4ff"/>
+  <circle cx="115" cy="70" r="5" fill="#00d4ff"/>
+  
+  <!-- Stars -->
+  <path d="M 50 50 L 52 56 L 58 56 L 53 60 L 55 66 L 50 62 L 45 66 L 47 60 L 42 56 L 48 56 Z" fill="#00d4ff"/>
+  <path d="M 150 50 L 152 56 L 158 56 L 153 60 L 155 66 L 150 62 L 145 66 L 147 60 L 142 56 L 148 56 Z" fill="#00d4ff"/>
+</svg>

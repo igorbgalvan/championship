@@ -1,0 +1,24 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="#0a0a0f"/>
+  
+  <!-- Trophy cup -->
+  <path d="M 20 42 L 20 26 Q 20 18 26 18 L 38 18 Q 44 18 44 26 L 44 42 Z" fill="url(#iconGradient)" stroke="#00d4ff" stroke-width="1.5"/>
+  
+  <!-- Trophy base -->
+  <rect x="22" y="42" width="20" height="6" rx="2" fill="#4a90e2"/>
+  
+  <!-- Trophy handles -->
+  <path d="M 20 32 Q 14 32 14 38 Q 14 44 20 44" fill="none" stroke="#ffd700" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 44 32 Q 50 32 50 38 Q 50 44 44 44" fill="none" stroke="#ffd700" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Top decoration -->
+  <circle cx="32" cy="18" r="3" fill="#00d4ff"/>
+</svg>
