@@ -33,6 +33,14 @@ import { Tournament } from './models/tournament.model';
           <app-tournament-setup></app-tournament-setup>
         }
       </main>
+      
+      <footer class="app-footer">
+        <p>
+          Desenvolvido usando <a href="https://angular.io" target="_blank" rel="noopener noreferrer">Angular</a>
+          • Feito com <span class="heart">❤️</span> por 
+          <a href="https://github.com/igorbgalvan" target="_blank" rel="noopener noreferrer">Igor</a>
+        </p>
+      </footer>
     </div>
   `,
   styles: [`
@@ -93,6 +101,45 @@ import { Tournament } from './models/tournament.model';
       .app-main {
         padding: 1rem 0;
         overflow-x: hidden;
+      }
+    }
+
+    .app-footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .app-footer p {
+      margin: 0;
+    }
+
+    .app-footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .app-footer a:hover {
+      color: var(--accent-blue);
+      text-shadow: 0 0 5px var(--accent-cyan);
+    }
+
+    .app-footer .heart {
+      color: #ff4d4f;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
       }
     }
   `]
