@@ -62,11 +62,13 @@ import { Tournament } from './models/tournament.model';
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
+      flex-wrap: wrap;
     }
 
     .header-text {
       text-align: center;
       flex: 1;
+      min-width: 100%;
     }
 
     .app-title {
@@ -96,6 +98,15 @@ import { Tournament } from './models/tournament.model';
       
       .app-header {
         padding: 1.5rem 1rem;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .header-text {
+        min-width: 100%;
       }
 
       .app-main {
