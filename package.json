@@ -18,15 +18,15 @@
     "@angular/platform-browser-dynamic": "^19.2.18",
     "@angular/router": "^19.2.18",
     "@ctrl/tinycolor": "^3.6.1",
-    "ng-zorro-antd": "^21.0.2",
+    "ng-zorro-antd": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.19",
-    "@angular/cli": "^7.2.4",
+    "@angular/cli": "^19.2.0",
     "@angular/compiler-cli": "^19.2.18",
-    "typescript": "~5.4.5"
+    "typescript": "~5.5.0"
   }
 }
