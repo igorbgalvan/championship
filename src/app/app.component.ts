@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, Renderer2, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 import { TournamentSetupComponent } from './components/tournament-setup/tournament-setup.component';
 import { BracketTreeComponent } from './components/bracket-tree/bracket-tree.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
@@ -170,7 +171,9 @@ export class AppComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private title: Title,
+    private meta: Meta
   ) {
     this.tournament$ = this.tournamentService.tournament$;
   }
@@ -194,10 +197,24 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     }
 
-    // Subscribe to language changes to update HTML lang attribute
+    // Subscribe to language changes to update HTML lang, document title and meta tags
     this.langSubscription = this.t.currentLanguage$.subscribe(lang => {
       this.updateHtmlLang(lang);
+      this.updateSeoForLanguage();
     });
+    this.updateSeoForLanguage();
+  }
+
+  private updateSeoForLanguage(): void {
+    const pageTitle = this.t.get('seo.pageTitle');
+    const metaDescription = this.t.get('seo.metaDescription');
+    this.title.setTitle(pageTitle);
+    this.meta.updateTag({ name: 'title', content: pageTitle });
+    this.meta.updateTag({ name: 'description', content: metaDescription });
+    this.meta.updateTag({ property: 'og:title', content: pageTitle });
+    this.meta.updateTag({ property: 'og:description', content: metaDescription });
+    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
+    this.meta.updateTag({ name: 'twitter:description', content: metaDescription });
   }
 
   ngOnDestroy(): void {

@@ -3,6 +3,10 @@ export const translations: Record<string, Record<string, string>> = {
     // App
     'app.title': '🏆 CHAMPIONSHIP',
     'app.subtitle': 'Sistema de Torneio Eliminação Simples',
+
+    // SEO (título da aba e meta tags – traduzido para busca no Google)
+    'seo.pageTitle': 'Campeonato - Sistema de Torneio Eliminação Simples',
+    'seo.metaDescription': 'Crie e gerencie torneios de eliminação simples com bracket visual interativo. Suporte para qualquer número de jogadores, gerenciamento de byes automático e persistência local. Gratuito e 100% frontend.',
     
     // Tournament Setup
     'setup.title': 'Criar Novo Torneio',
@@ -42,6 +46,10 @@ export const translations: Record<string, Record<string, string>> = {
     // App
     'app.title': '🏆 CHAMPIONSHIP',
     'app.subtitle': 'Single-Elimination Tournament System',
+
+    // SEO (browser tab title and meta tags)
+    'seo.pageTitle': 'Championship - Single-Elimination Tournament System',
+    'seo.metaDescription': 'Create and manage single-elimination tournaments with an interactive bracket. Support for any number of players, automatic bye handling, and local persistence. Free and 100% frontend.',
     
     // Tournament Setup
     'setup.title': 'Create New Tournament',
@@ -81,6 +89,10 @@ export const translations: Record<string, Record<string, string>> = {
     // App
     'app.title': '🏆 CHAMPIONSHIP',
     'app.subtitle': 'Sistema de Torneo Eliminación Simple',
+
+    // SEO (título de la pestaña y meta tags)
+    'seo.pageTitle': 'Campeonato - Sistema de Torneo Eliminación Simple',
+    'seo.metaDescription': 'Crea y gestiona torneos de eliminación simple con bracket visual interactivo. Soporte para cualquier número de jugadores, gestión automática de byes y persistencia local. Gratuito y 100% frontend.',
     
     // Tournament Setup
     'setup.title': 'Crear Nuevo Torneo',
