@@ -4,9 +4,9 @@ export const translations: Record<string, Record<string, string>> = {
     'app.title': '🏆 CHAMPIONSHIP',
     'app.subtitle': 'Sistema de Torneio Eliminação Simples',
 
-    // SEO (título da aba e meta tags – traduzido para busca no Google)
-    'seo.pageTitle': 'Campeonato - Sistema de Torneio Eliminação Simples',
-    'seo.metaDescription': 'Crie e gerencie torneios de eliminação simples com bracket visual interativo. Suporte para qualquer número de jogadores, gerenciamento de byes automático e persistência local. Gratuito e 100% frontend.',
+    // SEO (título da aba e meta tags – otimizado para "campeonato online para português" no Google)
+    'seo.pageTitle': 'Campeonato Online para Português - Torneio Eliminação Simples Grátis',
+    'seo.metaDescription': 'Campeonato online em português. Crie e gerencie torneios de eliminação simples com bracket visual interativo. Suporte para qualquer número de jogadores, em português. Gratuito e 100% online.',
     
     // Tournament Setup
     'setup.title': 'Criar Novo Torneio',
